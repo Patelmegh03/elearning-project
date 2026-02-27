@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Profile</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #001f3f, #003366);
+            color: white;
+        }
+
+        /* WHITE NAVBAR */
+        .navbar {
+            background: white;
+            padding: 15px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navbar a {
+            text-decoration: none;
+            margin-left: 25px;
+            font-weight: bold;
+            color: #003366;
+        }
+
+        .navbar a:hover {
+            color: #00c6ff;
+        }
+
+        /* CENTER CONTAINER */
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 85vh;
+        }
+
+        /* PROFILE BOX */
+        .profile-box {
+            width: 600px;
+            padding: 50px;
+            border-radius: 18px;
+            background: rgba(0, 198, 255, 0.08);
+            border: 2px solid #00c6ff;
+            box-shadow: 0 0 30px #00c6ff;
+            text-align: center;
+        }
+
+        .profile-box h1 {
+            font-size: 36px;
+            margin-bottom: 25px;
+            color: #00c6ff;
+        }
+
+        input {
+            width: 100%;
+            padding: 15px;
+            margin: 15px 0;
+            font-size: 18px;
+            border-radius: 8px;
+            border: 1px solid #00c6ff;
+            background: transparent;
+            color: white;
+        }
+
+        input::placeholder {
+            color: #bbb;
+        }
+
+        input:focus {
+            outline: none;
+            box-shadow: 0 0 10px #00c6ff;
+        }
+
+        button {
+            width: 100%;
+            padding: 15px;
+            font-size: 18px;
+            font-weight: bold;
+            border-radius: 8px;
+            border: none;
+            background: #00c6ff;
+            color: #001f3f;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background: #00a6d6;
+        }
+
+        hr {
+            margin: 35px 0;
+            border-color: #00c6ff;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <div class="navbar">
+        <div><strong>E-Learning</strong></div>
+        <div>
+            <a href="/dashboard">Dashboard</a>
+            <a href="/courses">Courses</a>
+            <a href="/profile">Profile</a>
+            <a href="/logout">Logout</a>
+        </div>
+    </div>
+
+    <!-- CENTER PROFILE BOX -->
+    <div class="container">
+        <div class="profile-box">
+            <h1>Profile Settings</h1>
+
+            <!-- Change Username -->
+            <form method="POST">
+                <input type="hidden" name="action" value="username">
+                <input type="text" name="new_username" placeholder="New Username" required>
+                <button type="submit">Update Username</button>
+            </form>
+
+            <hr>
+
+            <!-- Change Password -->
+            <form method="POST">
+                <input type="hidden" name="action" value="password">
+                <input type="password" name="current_password" placeholder="Current Password" required>
+                <input type="password" name="new_password" placeholder="New Password" required>
+                <button type="submit">Update Password</button>
+            </form>
+
+        </div>
+    </div>
+
+</body>
+</html>

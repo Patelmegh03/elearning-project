@@ -5,47 +5,89 @@
     <style>
         body {
             margin: 0;
-            height: 100vh;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #001f3f, #003366);
+        }
+
+        /* WHITE NAVIGATION BAR */
+        .navbar {
+            background: white;
+            padding: 15px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .logo {
+            font-weight: bold;
+            font-size: 20px;
+            color: #003366;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            margin-left: 25px;
+            font-weight: bold;
+            color: #003366;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #00c6ff;
+        }
+
+        /* CENTER CONTENT */
+        .container {
             display: flex;
             justify-content: center;
             align-items: center;
-            font-family: Arial;
-            background: linear-gradient(135deg, #2193b0, #6dd5ed);
-            text-align: center;
-        }
-
-        .card {
-            background: white;
-            padding: 60px;
-            border-radius: 15px;
-            width: 500px;
-        }
-
-        h2 {
-            font-size: 36px;
-        }
-
-        p {
-            font-size: 20px;
-        }
-
-        a {
-            display: inline-block;
-            margin-top: 20px;
-            padding: 12px 30px;
-            font-size: 18px;
-            background: #2193b0;
+            height: 85vh;
             color: white;
-            text-decoration: none;
-            border-radius: 8px;
+        }
+
+        .welcome-box {
+            background: rgba(0, 198, 255, 0.1);
+            border: 2px solid #00c6ff;
+            padding: 50px;
+            border-radius: 15px;
+            text-align: center;
+            width: 500px;
+            box-shadow: 0 0 25px #00c6ff;
+        }
+
+        .welcome-box h1 {
+            font-size: 30px;
+            margin-bottom: 15px;
+            color: #00c6ff;
+        }
+
+        .welcome-box p {
+            font-size: 18px;
         }
     </style>
 </head>
 <body>
-    <div class="card">
-        <h2>Welcome, {{ username }} 🎉</h2>
-        <p>This is your learning dashboard.</p>
-        <a href="/logout">Logout</a>
+
+    <!-- WHITE NAVIGATION BAR -->
+    <div class="navbar">
+        <div class="logo">E-Learning</div>
+
+        <div class="nav-links">
+            <a href="/dashboard">Dashboard</a>
+            <a href="/courses">Courses</a>
+            <a href="/profile">Profile</a>
+            <a href="/logout">Logout</a>
+        </div>
     </div>
+
+    <!-- WELCOME BOX -->
+    <div class="container">
+        <div class="welcome-box">
+            <h1>Welcome, {{ username }} 👋</h1>
+            <p>This is your E-learning platform</p>
+        </div>
+    </div>
+
 </body>
 </html>
