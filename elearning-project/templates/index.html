@@ -5,47 +5,54 @@
     <style>
         body {
             margin: 0;
-            padding: 0;
-            background: linear-gradient(to right, #4e73df, #1cc88a);
-            font-family: Arial, sans-serif;
+            height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
-            text-align: center;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea, #764ba2);
             color: white;
+            text-align: center;
         }
 
-        .container {
-            background: rgba(0,0,0,0.4);
-            padding: 40px;
-            border-radius: 10px;
+        .card {
+            background: rgba(255,255,255,0.15);
+            padding: 60px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            width: 500px;
         }
 
         h1 {
-            font-size: 40px;
+            font-size: 42px;
+            margin-bottom: 20px;
+        }
+
+        p {
+            font-size: 20px;
         }
 
         a {
             display: inline-block;
             margin: 15px;
-            padding: 12px 25px;
-            background-color: white;
-            color: black;
+            padding: 15px 35px;
+            background: white;
+            color: #333;
             text-decoration: none;
-            border-radius: 5px;
             font-size: 18px;
+            border-radius: 8px;
             font-weight: bold;
         }
 
         a:hover {
-            background-color: #f8f9fc;
+            background: #f1f1f1;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Cloud Based E-Learning Platform</h1>
+    <div class="card">
+        <h1>Cloud E-Learning Platform 🚀</h1>
+        <p>Learn Anytime, Anywhere</p>
         <a href="/login">Login</a>
         <a href="/register">Register</a>
     </div>

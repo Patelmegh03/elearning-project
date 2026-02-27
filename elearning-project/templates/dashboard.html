@@ -1,5 +1,51 @@
-<h2>Dashboard</h2>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard</title>
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: Arial;
+            background: linear-gradient(135deg, #2193b0, #6dd5ed);
+            text-align: center;
+        }
 
-<p>Welcome, {{ username }} 🎉</p>
+        .card {
+            background: white;
+            padding: 60px;
+            border-radius: 15px;
+            width: 500px;
+        }
 
-<a href="/logout">Logout</a>
+        h2 {
+            font-size: 36px;
+        }
+
+        p {
+            font-size: 20px;
+        }
+
+        a {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 12px 30px;
+            font-size: 18px;
+            background: #2193b0;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h2>Welcome, {{ username }} 🎉</h2>
+        <p>This is your learning dashboard.</p>
+        <a href="/logout">Logout</a>
+    </div>
+</body>
+</html>
