@@ -5,7 +5,7 @@ app = Flask(__name__)
 
 @app.route("/")
 def home():
-    return "eLearning Project is Live!"
+    return "Cloud Based E-Learning Project is Live!"
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 10000))
