@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Cyber Security Toolkit</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+
+body {
+    margin:0;
+    font-family:'Poppins', sans-serif;
+    background:linear-gradient(135deg,#0f2027,#203a43,#2c5364);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+    color:white;
+    overflow:hidden;
+}
+
+.container {
+    width:900px;
+    background:rgba(0,0,0,0.85);
+    padding:40px;
+    border-radius:20px;
+    box-shadow:0 0 50px cyan;
+    animation: fadeInZoom 1s ease;
+}
+
+@keyframes fadeInZoom {
+    from { opacity:0; transform:scale(0.9); }
+    to { opacity:1; transform:scale(1); }
+}
+
+h2 {
+    font-family:'Orbitron', sans-serif;
+    text-align:center;
+    color:cyan;
+    text-shadow:0 0 20px cyan;
+    margin-bottom:30px;
+    letter-spacing:2px;
+}
+
+input {
+    width:100%;
+    padding:12px 40px 12px 12px;
+    border-radius:12px;
+    border:none;
+    outline:none;
+    font-size:15px;
+    background:#111;
+    color:white;
+    box-shadow:0 0 10px #00ffff40;
+    transition:0.3s;
+}
+
+input:focus {
+    box-shadow:0 0 20px cyan;
+}
+
+button {
+    padding:12px 22px;
+    border:none;
+    border-radius:12px;
+    background:linear-gradient(90deg,cyan,#00bcd4);
+    font-weight:bold;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+button:hover {
+    transform:scale(1.05);
+    box-shadow:0 0 20px cyan;
+}
+
+/* -------- CLEAN PROFESSIONAL BAR THEME -------- */
+
+.progress {
+    background:#222;
+    border-radius:40px;
+    overflow:hidden;
+    margin-top:25px;
+}
+
+.progress-bar {
+    height:28px;
+    width:0%;
+    line-height:28px;
+    font-weight:bold;
+    border-radius:40px;
+    transition: width 1s ease-in-out;
+}
+
+/* Strength Colors */
+.weak {
+    background:linear-gradient(90deg,#ff4d4d,#ff0000);
+}
+
+.medium {
+    background:linear-gradient(90deg,#ff9800,#ffc107);
+}
+
+.strong {
+    background:linear-gradient(90deg,#00c853,#00e676);
+}
+
+/* Tabs */
+.tabs {
+    display:flex;
+    justify-content:center;
+    margin-top:35px;
+}
+
+.tabs button {
+    background:#111;
+    color:white;
+    margin:0 8px;
+    padding:10px 20px;
+    border-radius:10px;
+    transition:0.3s;
+}
+
+.tabs button.active {
+    background:cyan;
+    color:black;
+    box-shadow:0 0 20px cyan;
+}
+
+.tabcontent {
+    display:none;
+    margin-top:25px;
+    padding:20px;
+    background:rgba(255,255,255,0.05);
+    border-radius:15px;
+    animation: fadeSlide 0.5s ease;
+}
+
+@keyframes fadeSlide {
+    from { opacity:0; transform:translateY(15px); }
+    to { opacity:1; transform:translateY(0); }
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h2>🔐 PASSWORD STRENGTH ANALYZER</h2>
+
+<form method="POST" style="text-align:center;">
+
+<div style="position:relative; width:70%; margin:auto;">
+    <input type="password"
+           id="password"
+           name="password"
+           value="{{ request.form.password }}"
+           placeholder="Enter Secure Password"
+           required>
+
+    <span onclick="togglePassword()"
+          style="position:absolute; right:12px; top:50%; transform:translateY(-50%); cursor:pointer; font-size:18px;">
+        👁
+    </span>
+</div>
+
+<br><br>
+<button type="submit">Analyze</button>
+
+</form>
+
+{% if result.strength %}
+
+<h3 style="text-align:center;margin-top:25px;">
+Password Strength: {{ result.strength }}
+</h3>
+
+<div class="progress">
+  <div id="strengthBar" class="progress-bar">
+    {{ result.percent }}%
+  </div>
+</div>
+
+<script>
+window.onload = function() {
+    let percent = {{ result.percent }};
+    let bar = document.getElementById("strengthBar");
+
+    bar.style.width = percent + "%";
+
+    bar.classList.remove("weak","medium","strong");
+
+    if(percent <= 40){
+        bar.classList.add("weak");
+    }
+    else if(percent <= 75){
+        bar.classList.add("medium");
+    }
+    else{
+        bar.classList.add("strong");
+    }
+}
+</script>
+
+<!-- Tabs -->
+<div class="tabs">
+    <button class="tablink active" onclick="openTab(event,'hash')">Hash</button>
+    <button class="tablink" onclick="openTab(event,'cipher')">Cipher</button>
+    <button class="tablink" onclick="openTab(event,'rsa')">RSA</button>
+    <button class="tablink" onclick="openTab(event,'firewall')">Firewall</button>
+</div>
+
+<div id="hash" class="tabcontent" style="display:block;">
+    <h4>SHA-256 Hash</h4>
+    <p style="word-wrap:break-word;">{{ result.hash }}</p>
+</div>
+
+<div id="cipher" class="tabcontent">
+    <h4>Caesar Cipher</h4>
+    <p><b>Encrypted:</b> {{ result.caesar_enc }}</p>
+    <p><b>Decrypted:</b> {{ result.caesar_dec }}</p>
+</div>
+
+<div id="rsa" class="tabcontent">
+    <h4>RSA Encryption</h4>
+    <p style="word-wrap:break-word;">{{ result.rsa }}</p>
+</div>
+
+<div id="firewall" class="tabcontent">
+    <h4>Firewall Analysis</h4>
+    <p><b>Status:</b> {{ result.firewall }}</p>
+    <p>{{ result.brute }}</p>
+    {% if result.suggestion %}
+        <p><b>Suggested Password:</b><br>{{ result.suggestion }}</p>
+    {% endif %}
+</div>
+
+{% endif %}
+
+</div>
+
+<script>
+
+function togglePassword(){
+    let input = document.getElementById("password");
+    if(input.type === "password"){
+        input.type = "text";
+    } else {
+        input.type = "password";
+    }
+}
+
+function openTab(evt, tabName){
+    let i, tabcontent, tablinks;
+
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for(i=0;i<tabcontent.length;i++){
+        tabcontent[i].style.display="none";
+    }
+
+    tablinks = document.getElementsByClassName("tablink");
+    for(i=0;i<tablinks.length;i++){
+        tablinks[i].classList.remove("active");
+    }
+
+    document.getElementById(tabName).style.display="block";
+    evt.currentTarget.classList.add("active");
+}
+
+</script>
+
+</body>
+</html>
