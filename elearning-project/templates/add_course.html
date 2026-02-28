@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Course</title>
+</head>
+<body>
+
+<h2>Add New Course</h2>
+
+<form method="POST" enctype="multipart/form-data">
+    <input type="text" name="title" placeholder="Course Title" required><br><br>
+
+    <!-- Allow multiple PDFs -->
+    <input type="file" name="pdfs" accept=".pdf" multiple required><br><br>
+
+    <button type="submit">Upload Course</button>
+</form>
+
+<br>
+<a href="{{ url_for('courses') }}">Back to Courses</a>
+
+</body>
+</html>

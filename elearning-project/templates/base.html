@@ -1,11 +1,29 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>E-Learning</title>
+    <title>{{ title }}</title>
 </head>
 <body>
-    <h1>Welcome to Cloud E-Learning Platform</h1>
-    <a href="/login">Login</a> |
-    <a href="/register">Register</a>
+
+{% if session.get("user_id") %}
+<nav>
+    <a href="{{ url_for('dashboard') }}">Dashboard</a> |
+    <a href="{{ url_for('courses') }}">Courses</a> |
+    <a href="{{ url_for('profile') }}">Profile</a> |
+    <a href="{{ url_for('logout') }}">Logout</a>
+</nav>
+<hr>
+{% endif %}
+
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    {% for message in messages %}
+      <p style="color:red;">{{ message }}</p>
+    {% endfor %}
+  {% endif %}
+{% endwith %}
+
+{% block content %}{% endblock %}
+
 </body>
 </html>
