@@ -1,93 +1,201 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Dashboard</title>
-    <style>
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background: linear-gradient(135deg, #001f3f, #003366);
-        }
+<title>Dashboard</title>
 
-        /* WHITE NAVIGATION BAR */
-        .navbar {
-            background: white;
-            padding: 15px 40px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
+<style>
 
-        .logo {
-            font-weight: bold;
-            font-size: 20px;
-            color: #003366;
-        }
+*{
+box-sizing:border-box;
+}
 
-        .nav-links a {
-            text-decoration: none;
-            margin-left: 25px;
-            font-weight: bold;
-            color: #003366;
-            transition: 0.3s;
-        }
+body{
+margin:0;
+font-family:'Segoe UI',sans-serif;
+overflow:hidden;
 
-        .nav-links a:hover {
-            color: #00c6ff;
-        }
+/* SAME LOGIN BACKGROUND */
 
-        /* CENTER CONTENT */
-        .container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 85vh;
-            color: white;
-        }
+background:linear-gradient(270deg,#0f2027,#203a43,#2c5364,#1c92d2);
+background-size:600% 600%;
+animation:bgMove 6s linear infinite;
+}
 
-        .welcome-box {
-            background: rgba(0, 198, 255, 0.1);
-            border: 2px solid #00c6ff;
-            padding: 50px;
-            border-radius: 15px;
-            text-align: center;
-            width: 500px;
-            box-shadow: 0 0 25px #00c6ff;
-        }
+@keyframes bgMove{
+0%{background-position:0% 50%}
+50%{background-position:100% 50%}
+100%{background-position:0% 50%}
+}
 
-        .welcome-box h1 {
-            font-size: 30px;
-            margin-bottom: 15px;
-            color: #00c6ff;
-        }
+/* FLOATING CLOUDS */
 
-        .welcome-box p {
-            font-size: 18px;
-        }
-    </style>
+.cloud{
+position:absolute;
+background:white;
+border-radius:50px;
+opacity:0.15;
+animation:cloudMove linear infinite;
+}
+
+.cloud:before,
+.cloud:after{
+content:"";
+position:absolute;
+background:white;
+border-radius:50%;
+}
+
+.cloud1{
+width:200px;
+height:60px;
+top:20%;
+left:-250px;
+animation-duration:25s;
+}
+
+.cloud1:before{
+width:80px;
+height:80px;
+top:-40px;
+left:30px;
+}
+
+.cloud1:after{
+width:100px;
+height:100px;
+top:-50px;
+right:30px;
+}
+
+.cloud2{
+width:250px;
+height:70px;
+top:60%;
+left:-300px;
+animation-duration:35s;
+}
+
+.cloud2:before{
+width:90px;
+height:90px;
+top:-45px;
+left:40px;
+}
+
+.cloud2:after{
+width:110px;
+height:110px;
+top:-55px;
+right:40px;
+}
+
+@keyframes cloudMove{
+0%{transform:translateX(0)}
+100%{transform:translateX(160vw)}
+}
+
+/* NAVBAR */
+
+.navbar{
+background:rgba(255,255,255,0.12);
+backdrop-filter:blur(12px);
+padding:15px 40px;
+
+display:flex;
+justify-content:space-between;
+align-items:center;
+
+border-bottom:1px solid rgba(255,255,255,0.2);
+}
+
+.logo{
+font-weight:bold;
+font-size:22px;
+color:white;
+}
+
+.nav-links a{
+text-decoration:none;
+margin-left:25px;
+font-weight:bold;
+color:white;
+transition:0.3s;
+}
+
+.nav-links a:hover{
+color:#00c6ff;
+}
+
+/* CENTER CONTENT */
+
+.container{
+display:flex;
+justify-content:center;
+align-items:center;
+height:85vh;
+color:white;
+}
+
+/* WELCOME BOX SAME LOGIN STYLE */
+
+.welcome-box{
+
+width:520px;
+padding:55px;
+
+background:rgba(255,255,255,0.12);
+backdrop-filter:blur(18px);
+
+border-radius:20px;
+
+box-shadow:0 30px 70px rgba(0,0,0,0.6);
+
+border:1px solid rgba(255,255,255,0.2);
+
+text-align:center;
+}
+
+/* TEXT */
+
+.welcome-box h1{
+font-size:32px;
+margin-bottom:15px;
+}
+
+.welcome-box p{
+font-size:18px;
+color:#e0e0e0;
+}
+
+</style>
 </head>
+
 <body>
 
-    <!-- WHITE NAVIGATION BAR -->
-    <div class="navbar">
-        <div class="logo">E-Learning</div>
+<div class="cloud cloud1"></div>
+<div class="cloud cloud2"></div>
 
-        <div class="nav-links">
-            <a href="/dashboard">Dashboard</a>
-            <a href="/courses">Courses</a>
-            <a href="/profile">Profile</a>
-            <a href="/logout">Logout</a>
-        </div>
-    </div>
+<!-- NAVBAR -->
+<div class="navbar">
+<div class="logo">E-Learning</div>
 
-    <!-- WELCOME BOX -->
-    <div class="container">
-        <div class="welcome-box">
-            <h1>Welcome, {{ username }} 👋</h1>
-            <p>This is your E-learning platform</p>
-        </div>
-    </div>
+<div class="nav-links">
+<a href="/dashboard">Dashboard</a>
+<a href="/courses">Courses</a>
+<a href="/profile">Profile</a>
+<a href="/logout">Logout</a>
+</div>
+</div>
+
+<!-- WELCOME BOX -->
+<div class="container">
+<div class="welcome-box">
+
+<h1>Welcome, {{ username }}</h1>
+<p>This is your E-learning platform</p>
+
+</div>
+</div>
 
 </body>
 </html>

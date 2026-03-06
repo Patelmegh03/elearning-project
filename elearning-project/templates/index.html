@@ -1,63 +1,191 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>E-Learning Platform</title>
-    <style>
-        body {
-            margin: 0;
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-family: Arial, sans-serif;
-            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
-            color: #00c6ff;
-            text-align: center;
-        }
+<title>E-Learning Platform</title>
 
-        .card {
-            background: rgba(0, 0, 0, 0.85);
-            padding: 60px;
-            border-radius: 15px;
-            width: 500px;
-            border: 1px solid #00c6ff;
-            box-shadow: 0 0 30px #00c6ff;
-        }
+<style>
 
-        h1 {
-            font-size: 42px;
-            margin-bottom: 20px;
-            text-shadow: 0 0 15px #00c6ff;
-        }
+*{
+box-sizing:border-box;
+}
 
-        p {
-            font-size: 20px;
-            margin-bottom: 30px;
-        }
+body{
+margin:0;
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+font-family:'Segoe UI',sans-serif;
+overflow:hidden;
 
-        a {
-            display: inline-block;
-            padding: 15px 40px;
-            background: #00c6ff;
-            color: #0f2027;
-            text-decoration: none;
-            font-size: 18px;
-            border-radius: 8px;
-            font-weight: bold;
-            transition: 0.3s;
-        }
+/* SAME LOGIN THEME BACKGROUND */
 
-        a:hover {
-            background: #0096c7;
-            box-shadow: 0 0 20px #00c6ff;
-        }
-    </style>
+background:linear-gradient(270deg,#0f2027,#203a43,#2c5364,#1c92d2);
+background-size:600% 600%;
+animation:bgMove 6s linear infinite;
+
+color:white;
+text-align:center;
+}
+
+@keyframes bgMove{
+0%{background-position:0% 50%}
+50%{background-position:100% 50%}
+100%{background-position:0% 50%}
+}
+
+/* FLOATING CLOUDS */
+
+.cloud{
+position:absolute;
+background:white;
+border-radius:50px;
+opacity:0.15;
+animation:cloudMove linear infinite;
+}
+
+.cloud:before,
+.cloud:after{
+content:"";
+position:absolute;
+background:white;
+border-radius:50%;
+}
+
+.cloud1{
+width:200px;
+height:60px;
+top:20%;
+left:-250px;
+animation-duration:25s;
+}
+
+.cloud1:before{
+width:80px;
+height:80px;
+top:-40px;
+left:30px;
+}
+
+.cloud1:after{
+width:100px;
+height:100px;
+top:-50px;
+right:30px;
+}
+
+.cloud2{
+width:250px;
+height:70px;
+top:60%;
+left:-300px;
+animation-duration:35s;
+}
+
+.cloud2:before{
+width:90px;
+height:90px;
+top:-45px;
+left:40px;
+}
+
+.cloud2:after{
+width:110px;
+height:110px;
+top:-55px;
+right:40px;
+}
+
+@keyframes cloudMove{
+0%{transform:translateX(0)}
+100%{transform:translateX(160vw)}
+}
+
+/* CARD SAME AS LOGIN */
+
+.card{
+
+width:520px;
+padding:60px;
+
+background:rgba(255,255,255,0.12);
+backdrop-filter:blur(18px);
+
+border-radius:20px;
+
+box-shadow:0 30px 70px rgba(0,0,0,0.6);
+
+border:1px solid rgba(255,255,255,0.2);
+
+color:white;
+}
+
+/* TITLE */
+
+h1{
+font-size:42px;
+margin-bottom:20px;
+letter-spacing:1px;
+}
+
+/* SUBTITLE */
+
+p{
+font-size:20px;
+margin-bottom:35px;
+color:#e0e0e0;
+}
+
+/* BUTTON SAME STYLE */
+
+a{
+
+display:inline-block;
+
+padding:18px 45px;
+
+font-size:18px;
+font-weight:bold;
+
+border-radius:10px;
+
+color:white;
+
+background:linear-gradient(270deg,#00c6ff,#0072ff,#00c6ff);
+background-size:400% 400%;
+
+animation:btnMove 6s ease infinite;
+
+text-decoration:none;
+}
+
+@keyframes btnMove{
+0%{background-position:0% 50%}
+50%{background-position:100% 50%}
+100%{background-position:0% 50%}
+}
+
+a:hover{
+transform:scale(1.05);
+}
+
+</style>
 </head>
+
 <body>
-    <div class="card">
-        <h1>Cloud E-Learning Platform 🚀</h1>
-        <p>Learn Anytime, Anywhere</p>
-        <a href="/login">Get Started</a>
-    </div>
+
+<div class="cloud cloud1"></div>
+<div class="cloud cloud2"></div>
+
+<div class="card">
+
+<h1>Cloud E-Learning Platform 🚀</h1>
+
+<p>Learn Anytime, Anywhere</p>
+
+<a href="/login">Get Started</a>
+
+</div>
+
 </body>
 </html>

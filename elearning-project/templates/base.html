@@ -1,53 +1,160 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Course System</title>
+<title>Course System</title>
 
-    <style>
-        body {
-            margin: 0;
-            font-family: Arial, Helvetica, sans-serif;
-            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
-        }
+<style>
 
-        /* WHITE HEADER BAR */
-        .header {
-            background: white;
-            padding: 20px 0;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-        }
+*{
+box-sizing:border-box;
+}
 
-        .nav {
-            width: 100%;
-            text-align: center;
-        }
+body{
+margin:0;
+font-family:'Segoe UI', Arial, sans-serif;
+overflow-x:hidden;
 
-        .nav a {
-            margin: 0 25px;
-            text-decoration: none;
-            font-size: 20px;
-            font-weight: bold;
-            color: black;
-            transition: 0.3s;
-        }
+/* animated background */
 
-        .nav a:hover {
-            color: #00c6ff;
-        }
-    </style>
+background:linear-gradient(270deg,#0f2027,#203a43,#2c5364,#1c92d2);
+background-size:600% 600%;
+animation:bgMove 6s linear infinite;
+}
+
+@keyframes bgMove{
+0%{background-position:0% 50%}
+50%{background-position:100% 50%}
+100%{background-position:0% 50%}
+}
+
+/* CLOUDS */
+
+.cloud{
+position:absolute;
+background:white;
+border-radius:50px;
+opacity:0.15;
+animation:cloudMove linear infinite;
+}
+
+.cloud:before,
+.cloud:after{
+content:"";
+position:absolute;
+background:white;
+border-radius:50%;
+}
+
+.cloud1{
+width:200px;
+height:60px;
+top:20%;
+left:-250px;
+animation-duration:25s;
+}
+
+.cloud1:before{
+width:80px;
+height:80px;
+top:-40px;
+left:30px;
+}
+
+.cloud1:after{
+width:100px;
+height:100px;
+top:-50px;
+right:30px;
+}
+
+.cloud2{
+width:250px;
+height:70px;
+top:60%;
+left:-300px;
+animation-duration:35s;
+}
+
+.cloud2:before{
+width:90px;
+height:90px;
+top:-45px;
+left:40px;
+}
+
+.cloud2:after{
+width:110px;
+height:110px;
+top:-55px;
+right:40px;
+}
+
+@keyframes cloudMove{
+0%{transform:translateX(0)}
+100%{transform:translateX(160vw)}
+}
+
+/* NAVBAR */
+
+.header{
+
+background:rgba(255,255,255,0.12);
+backdrop-filter:blur(12px);
+
+padding:18px 0;
+
+border-bottom:1px solid rgba(255,255,255,0.2);
+
+box-shadow:0 10px 25px rgba(0,0,0,0.3);
+}
+
+.nav{
+width:100%;
+text-align:center;
+}
+
+.nav a{
+
+margin:0 30px;
+
+text-decoration:none;
+font-size:20px;
+font-weight:bold;
+
+color:white;
+
+transition:0.3s;
+}
+
+.nav a:hover{
+color:#00c6ff;
+text-shadow:0 0 10px #00c6ff;
+}
+
+</style>
 
 </head>
+
 <body>
 
+<!-- CLOUDS -->
+
+<div class="cloud cloud1"></div>
+<div class="cloud cloud2"></div>
+
 {% if session.get("user_id") %}
+
 <div class="header">
-    <div class="nav">
-        <a href="{{ url_for('dashboard') }}">Dashboard</a>
-        <a href="{{ url_for('courses') }}">Courses</a>
-        <a href="{{ url_for('profile') }}">Profile</a>
-        <a href="{{ url_for('logout') }}">Logout</a>
-    </div>
+<div class="nav">
+
+<a href="{{ url_for('dashboard') }}">Dashboard</a>
+<a href="{{ url_for('courses') }}">Courses</a>
+<a href="{{ url_for('profile') }}">Profile</a>
+<a href="{{ url_for('logout') }}">Logout</a>
+
 </div>
+</div>
+
 {% endif %}
 
 {% block content %}{% endblock %}
